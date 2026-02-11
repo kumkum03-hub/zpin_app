@@ -1,5 +1,5 @@
-import Navbar from '../../../../components/Navbar';
-import Footer from '../../../../components/Footer';
+import Navbar from '../../../../Components/Navbar';
+import Footer from '../../../../Components/Footer';
 import FilterDropdown from '../../../../Components/FilterDropdown';
 import './Sweatshirts.css';
 import { useRef, useState, useEffect } from 'react';
