@@ -1,0 +1,381 @@
+/* Hair Accessories Specific Styles - Scoped */
+
+/* 
+   IMPORTANT: All styles here are scoped under .page-hair-accessories to avoid
+   breaking the layout of other pages.
+*/
+
+/* Page container overrides */
+.page-hair-accessories.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main content */
+.page-hair-accessories .site-main {
+    padding: 40px 20px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.page-hair-accessories .layout-content {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.page-hair-accessories .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.page-hair-accessories .page-header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.page-hair-accessories .breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.page-hair-accessories .breadcrumb a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.page-hair-accessories .breadcrumb a:hover {
+    color: var(--text);
+}
+
+.page-hair-accessories .breadcrumb .sep {
+    color: #d1d5db;
+}
+
+/* Horizontal category scroller */
+.page-hair-accessories .category-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 18px 0 28px 0;
+    position: relative;
+    /* Ensure padding for arrows */
+    padding: 0 10px;
+}
+
+.page-hair-accessories .category-scroll {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 8px 6px;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* REMOVED justify-content: center to fix left-cut-off issue */
+    width: 100%;
+}
+
+.page-hair-accessories .category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Scoped Card Link & Media */
+.page-hair-accessories .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    flex: 0 0 200px;
+    max-width: 200px;
+}
+
+.page-hair-accessories .card-link:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow);
+}
+
+.page-hair-accessories .card-media {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hair-accessories .card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.22);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.page-hair-accessories .card-link:hover .card-overlay {
+    opacity: 1;
+}
+
+.page-hair-accessories .card-label {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* Arrow Buttons - Visible and Positioned Outside Content */
+.page-hair-accessories .arrow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    font-size: 20px;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.page-hair-accessories .arrow-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.page-hair-accessories .arrow-btn.left {
+    left: -20px;
+}
+
+.page-hair-accessories .arrow-btn.right {
+    right: -20px;
+}
+
+/* Section 1 - Trending - Specific to Hair Accessories page */
+.page-hair-accessories .mainContainer,
+.page-hair-accessories .box {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+/* SQUARE CARDS MODIFICATION HERE */
+.page-hair-accessories .card {
+    width: 250px;
+    aspect-ratio: 1 / 1;
+    /* Make it square */
+    height: 250px;
+    /* Force height to match for consistency */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 15px;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    overflow: hidden;
+    /* Ensure content stays inside */
+}
+
+.page-hair-accessories .card img {
+    width: 100%;
+    height: 65%;
+    /* Reduce image slightly to give space for text */
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.page-hair-accessories .card h1 {
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 8px;
+    line-height: 1.2;
+    flex-grow: 1;
+    /* Allow text to take available space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-hair-accessories .trending-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff5900;
+    color: white;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 99;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-hair-accessories #strikethrough {
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 6px;
+}
+
+.page-hair-accessories .card p {
+    color: red;
+    font-size: 1rem;
+    padding-bottom: 15px;
+    margin: 0;
+}
+
+.page-hair-accessories .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments scoped */
+@media (max-width: 900px) {
+    .page-hair-accessories .page-header h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hair-accessories .mainContainer {
+        padding: 0 10px !important;
+    }
+
+    .page-hair-accessories .card {
+        height: auto !important;
+        width: 130px !important;
+        aspect-ratio: 1 / 1 !important;
+        margin: 8px !important;
+    }
+
+    .page-hair-accessories .card img {
+        height: 65% !important;
+    }
+
+    .page-hair-accessories .card h1 {
+        font-size: 12px !important;
+        padding: 2px 5px !important;
+    }
+
+    .page-hair-accessories .card p {
+        font-size: 0.8rem !important;
+    }
+
+    .page-hair-accessories .trending-badge {
+        font-size: 8px !important;
+        padding: 3px 5px !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .page-hair-accessories .category-row .card-link {
+        flex: 0 0 200px;
+        max-width: 200px;
+    }
+
+    .page-hair-accessories .arrow-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 560px) {
+    .page-hair-accessories .grid {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hair-accessories .card {
+        height: auto !important;
+        width: 110px !important;
+        aspect-ratio: 1/1 !important;
+        margin: 6px !important;
+    }
+
+    .page-hair-accessories .card img {
+        height: 60% !important;
+    }
+
+    .page-hair-accessories .card h1 {
+        font-size: 10px !important;
+        padding: 2px !important;
+    }
+
+    .page-hair-accessories .card p {
+        font-size: 0.7rem !important;
+    }
+
+    .page-hair-accessories .trending-badge {
+        font-size: 7px !important;
+        padding: 2px 4px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .page-hair-accessories .card {
+        height: auto !important;
+        width: 95px !important;
+        aspect-ratio: 1/1 !important;
+        margin: 4px !important;
+    }
+
+    .page-hair-accessories .card img {
+        height: 60% !important;
+    }
+
+    .page-hair-accessories .card h1 {
+        font-size: 9px !important;
+        padding: 1px !important;
+    }
+
+    .page-hair-accessories .card p {
+        font-size: 0.65rem !important;
+    }
+
+    .page-hair-accessories .trending-badge {
+        font-size: 6px !important;
+        padding: 2px 3px !important;
+    }
+}

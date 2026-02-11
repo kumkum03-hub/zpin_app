@@ -1,0 +1,38 @@
+src/
+ ├── pages/
+ │   ├── Home/
+ │   │   └── Homepage.jsx
+ │
+ │   ├── Categories/
+ │   │   ├── Men/
+ │   │   │   ├── Men.jsx               // Men landing page
+ │   │   │   ├── Casual/
+ │   │   │   │   ├── Casual.jsx
+ │   │   │   │   ├── Tshirts.jsx
+ │   │   │   │   ├── Shirts.jsx
+ │   │   │   │   └── Sweatshirts.jsx
+ │   │   │   │
+ │   │   │   ├── Ethnic/
+ │   │   │   │   ├── Ethnic.jsx
+ │   │   │   │   ├── Kurtas.jsx
+ │   │   │   │   └── Sherwani.jsx
+ │   │   │   │
+ │   │   │   └── Sports/
+ │   │   │       ├── Sports.jsx
+ │   │   │       ├── Tracksuits.jsx
+ │   │   │       └── Activewear.jsx
+ │   │   │
+ │   │   ├── Women/
+ │   │   │   ├── Women.jsx
+ │   │   │   └── ...
+ │   │   │
+ │   │   └── Kids/
+ │   │       ├── Kids.jsx
+ │   │       └── ...
+ │
+ ├── components/
+ │   ├── ProductCard.jsx
+ │   ├── CategoryGrid.jsx
+ │   └── Filters.jsx
+ │
+ └── App.jsx

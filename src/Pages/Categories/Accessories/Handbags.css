@@ -1,0 +1,334 @@
+/* Handbags Specific Styles - Scoped */
+
+/* 
+   IMPORTANT: All styles here are scoped under .page-handbags to avoid
+   breaking the layout of other pages like Men/Women categories.
+*/
+
+/* Page container overrides */
+.page-handbags.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content */
+.page-handbags .site-main {
+  padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.page-handbags .layout-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.page-handbags .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.page-handbags .page-header h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.page-handbags .breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.page-handbags .breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.page-handbags .breadcrumb a:hover {
+  color: var(--text);
+}
+
+.page-handbags .breadcrumb .sep {
+  color: #d1d5db;
+}
+
+/* Horizontal category scroller */
+.page-handbags .category-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center the categories */
+  gap: 12px;
+  margin: 18px 0 28px 0;
+  position: relative;
+}
+
+.page-handbags .category-scroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 8px 6px;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  justify-content: center;
+  /* Ensure scroll content is centered if it doesn't overflow */
+}
+
+.page-handbags .category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scoped Card Link & Media */
+.page-handbags .card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  flex: 0 0 200px;
+  max-width: 200px;
+}
+
+.page-handbags .card-link:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow);
+}
+
+.page-handbags .card-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  /* Keep strict 10px for Handbags ONLY */
+  position: relative;
+  overflow: hidden;
+}
+
+.page-handbags .card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.22);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.page-handbags .card-link:hover .card-overlay {
+  opacity: 1;
+}
+
+.page-handbags .card-label {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Arrow Buttons - Hidden as requested */
+.page-handbags .arrow-btn {
+  display: none;
+}
+
+/* Section 1 - Trending - Specific to Handbags page */
+.page-handbags .mainContainer,
+.page-handbags .box {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.page-handbags .card {
+  height: 300px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 15px;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.page-handbags .card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.page-handbags .card h1 {
+  font-size: 20px;
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+}
+
+.page-handbags .trending-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff5900;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 99;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.page-handbags #strikethrough {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.page-handbags .card p {
+  color: red;
+  font-size: 1rem;
+  padding-bottom: 10px;
+}
+
+.page-handbags .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments scoped */
+@media (max-width: 900px) {
+  .page-handbags .page-header h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-handbags .mainContainer {
+    padding: 0 10px !important;
+  }
+
+  .page-handbags .card {
+    height: 200px !important;
+    width: 130px !important;
+    margin: 8px !important;
+  }
+
+  .page-handbags .card img {
+    height: 130px !important;
+  }
+
+  .page-handbags .card h1 {
+    font-size: 12px !important;
+    padding: 5px !important;
+  }
+
+  .page-handbags .card p {
+    font-size: 0.8rem !important;
+  }
+
+  .page-handbags .trending-badge {
+    font-size: 8px !important;
+    padding: 3px 5px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-handbags .category-row .card-link {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+
+  .page-handbags .arrow-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-handbags .grid {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-handbags .card {
+    height: 180px !important;
+    width: 110px !important;
+    margin: 6px !important;
+  }
+
+  .page-handbags .card img {
+    height: 110px !important;
+  }
+
+  .page-handbags .card h1 {
+    font-size: 10px !important;
+    padding: 4px !important;
+  }
+
+  .page-handbags .card p {
+    font-size: 0.7rem !important;
+  }
+
+  .page-handbags .trending-badge {
+    font-size: 7px !important;
+    padding: 2px 4px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-handbags .card {
+    height: 160px !important;
+    width: 95px !important;
+    margin: 4px !important;
+  }
+
+  .page-handbags .card img {
+    height: 95px !important;
+  }
+
+  .page-handbags .card h1 {
+    font-size: 9px !important;
+    padding: 3px !important;
+  }
+
+  .page-handbags .card p {
+    font-size: 0.65rem !important;
+  }
+
+  .page-handbags .trending-badge {
+    font-size: 6px !important;
+    padding: 2px 3px !important;
+  }
+}
