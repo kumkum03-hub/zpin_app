@@ -1,6 +1,6 @@
 import Navbar from '../../../../Components/Navbar';
 import Footer from '../../../../Components/Footer';
-import './LoungeWear.css';
+import './Loungewear.css';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
