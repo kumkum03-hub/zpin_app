@@ -1,6 +1,6 @@
 import Navbar from '../../../../Components/Navbar';
 import Footer from '../../../../Components/Footer';
-import './TrackPants.css';
+import './Trackpants.css';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
