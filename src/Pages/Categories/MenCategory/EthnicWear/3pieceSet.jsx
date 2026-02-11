@@ -1,5 +1,5 @@
-import Navbar from '../../../../components/Navbar';
-import Footer from '../../../../components/Footer';
+import Navbar from '../../../../Components/Navbar';
+import Footer from '../../../../Components/Footer';
 import './3pieceSet.css';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
