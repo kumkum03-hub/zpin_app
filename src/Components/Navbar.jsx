@@ -26,7 +26,7 @@ const Navbar = () => {
         {/* Right icons */}
         <div className="nav-actions">
 
-          <button className="nav-btn">
+          <button className="nav-btn" id="favorite-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" fill="none"strokeWidth="2">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 
               5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 
@@ -35,7 +35,7 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <button className="nav-btn">
+          <button className="nav-btn" id="cart-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" fill="none"strokeWidth="2">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -43,12 +43,12 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <button className="nav-btn">
+          <Link to="/profile" className="nav-btn" id="profile-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" fill="none"strokeWidth="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-          </button>
+          </Link>
 
         </div>
       </div>

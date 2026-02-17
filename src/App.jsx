@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Homepage from "./Homepage";
 import Men from "./Pages/Categories/MenCategory/Men";
 import Women from "./Pages/Categories/WomenCategory/Women";
@@ -109,6 +109,8 @@ import SmallAppliances from "./Pages/Categories/ElectricalAppliances/SmallApplia
 import KitchenAppliances from "./Pages/Categories/ElectricalAppliances/KitchenAppliances";
 import HeatingCoolingAppliances from "./Pages/Categories/ElectricalAppliances/Heating&CoolingAppliances";
 import PersonalAppliances from "./Pages/Categories/ElectricalAppliances/PersonalAppliances";
+import Profile from "./Pages/Profile/Profile";
+import { getRootCategories } from "./services/categoryApi";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -121,9 +123,26 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getRootCategories()
+      .then((data) => {
+        console.log("API DATA ", data);
+        setCategories(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
+    <>
     <BrowserRouter>
       <ScrollToTop />
+
+    
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Men" element={<Men />} />
@@ -242,8 +261,10 @@ function App() {
         <Route path="/KitchenAppliances" element={<KitchenAppliances />} />
         <Route path="/HeatingCoolingAppliances" element={<HeatingCoolingAppliances />} />
         <Route path="/PersonalAppliances" element={<PersonalAppliances />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 

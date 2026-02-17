@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Homepage.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 
 const Homepage = () => {
   useEffect(() => {
@@ -62,7 +64,13 @@ const Homepage = () => {
       const placeBelow = () => {
         const rect = item.getBoundingClientRect();
         
-        const dropdownWidth = Math.min(720, window.innerWidth - 32);
+        // Adjust dropdown width based on viewport
+        let dropdownWidth;
+        if (window.innerWidth >= 900 && window.innerWidth <= 1300) {
+          dropdownWidth = Math.min(500, window.innerWidth - 80);
+        } else {
+          dropdownWidth = Math.min(720, window.innerWidth - 32);
+        }
 
         portal.appendChild(dropdown);
         dropdown.style.position = 'fixed';
@@ -74,9 +82,14 @@ const Homepage = () => {
         dropdown.style.transform = 'none';
         dropdown.style.transition = 'none';
 
+        // Calculate left position
         let left = rect.left + rect.width / 2 - dropdownWidth / 2;
-        // Ensure it stays within viewport bounds (16px padding from edges)
-        left = Math.max(16, Math.min(left, window.innerWidth - dropdownWidth - 16));
+        
+        // CRITICAL: Always ensure dropdown is visible - clamp to viewport
+        const minLeft = 10;
+        const maxLeft = window.innerWidth - dropdownWidth - 10;
+        left = Math.max(minLeft, Math.min(left, maxLeft));
+        
         const top = rect.bottom + 6;
         dropdown.style.left = left + 'px';
         dropdown.style.top = top + 'px';
@@ -89,7 +102,7 @@ const Homepage = () => {
           if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
         };
         const portalLeave = () => {
-          // immediate restore when mouse leaves the portaled dropdown
+         
           restore();
         };
         // store handlers so they can be removed on restore
@@ -329,46 +342,7 @@ const Homepage = () => {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo">
-            <img src="/logo.png" alt="logo" />
-          </div>
-
-          <div className="nav-search">
-            <input type="text" placeholder="Search fashion, trends, styles..." id="searchInput" />
-            <button className="search-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-            </button>
-          </div>
-
-          <div className="nav-actions">
-            <button className="nav-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </button>
-
-            <button className="nav-btn" onClick={goToCart}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-              </svg>
-            </button>
-
-            <button className="nav-btn profile-btn" onClick={goToProfile}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="category-scroll-container">
         <div className="category-scroll-wrapper">
@@ -380,15 +354,15 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/Women" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Women" />
+                    <img src="https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?q=80&w=749&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Women" />
                     <span>Women</span>
                   </Link>
                   <Link to="/Men" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Men" />
+                    <img src="https://images.unsplash.com/photo-1656695230389-01185e6fbff8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbiUyMGZhc2hpb258ZW58MHx8MHx8fDA%3D" alt="Men" />
                     <button onClick={goToMen}>Men</button>
                   </Link>
                   <a href="#" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Kids" />
+                    <img src="https://plus.unsplash.com/premium_photo-1724296696367-1aabadefe568?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D" alt="Kids" />
                     <span>Kids</span>
                   </a>
 
@@ -405,11 +379,11 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/Men/FootWear" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Men's Footwear" />
+                    <img src="https://images.unsplash.com/photo-1617689563472-c66428e83d17?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHxtZW4lMjBmb290d2VhcnxlbnwwfHwwfHx8MA%3D%3D" alt="Men's Footwear" />
                     <span>Men's Footwear</span>
                   </Link>
                   <Link to="/Women/FootWear" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Women's Footwear" />
+                    <img src="https://plus.unsplash.com/premium_photo-1673977132936-435a5cf780bd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODR8fHdvbWVuJTIwZm9vdHdlYXJ8ZW58MHx8MHx8fDA%3D" alt="Women's Footwear" />
                     <span>Women's Footwear</span>
                   </Link>
 
@@ -426,28 +400,28 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/Handbags" className="dropdown-item">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62" alt="Handbags" />
-                    <span>Clips & Pins</span>
+                    <img src="https://images.unsplash.com/photo-1656234190113-cf5255b4479f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGJhZ3BhY2tzJTIwYW5kJTIwaGFuZGJhZ3N8ZW58MHx8MHx8fDA%3D" alt="Handbags" />
+                    <span>Backpacks & Handbags</span>
                   </Link>
                   <Link to="/Wallets-Belts" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Women" />
-                    <span>Hair Bands & Scrunchies</span>
+                    <img src="https://images.unsplash.com/photo-1620109176902-24afe6146cd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fHdhbGxldHxlbnwwfHwwfHx8MA%3D%3D" alt="Women" />
+                    <span>Wallets & Belts</span>
                   </Link>
                   <Link to="/Watches" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Kids" />
+                    <img src="https://images.unsplash.com/photo-1603035945433-1297ccd444b5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bXVsdGlwbGUlMjB3YXRjaGVzfGVufDB8fDB8fHww" alt="Kids" />
                     <span>Watches</span>
                   </Link>
                   <Link to="/Sunglasses" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/f7/38/25/f7382542648a417ae5f4a222c25bd962.jpg" alt="Sports" />
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZ2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Sports" />
                     <span>Sunglasses & Frames</span>
                   </Link>
 
                   <Link to="/Jewellery" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Bags" />
+                    <img src="https://plus.unsplash.com/premium_photo-1661645433820-24c8604e4db5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8" alt="Bags" />
                     <span>Jewellery</span>
                   </Link>
                   <a href="#" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Bags" />
+                    <img src="https://plus.unsplash.com/premium_photo-1661657771021-34782c0c26ff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D" alt="Bags" />
                     <span>Hair Accessories </span>
                   </a>
                  
@@ -464,31 +438,31 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/Skincare" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Skincare" />
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8" alt="Skincare" />
                     <span>Skincare</span>
                   </Link>
                   <Link to="/Haircare" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Haircare" />
+                    <img src="https://plus.unsplash.com/premium_photo-1729901724853-90ecf6ee3c33?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQwfHxoYWlyY2FyZXxlbnwwfHwwfHx8MA%3D%3D" alt="Haircare" />
                     <span>Haircare</span>
                   </Link>
                   <Link to="/Makeup" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Makeup" />
+                    <img src="https://images.unsplash.com/photo-1602558618194-3037081afe0d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fG1ha2V1cHxlbnwwfHwwfHx8MA%3D%3D" alt="Makeup" />
                     <span>Makeup</span>
                   </Link>
                   <Link to="/PersonalCare" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/f7/38/25/f7382542648a417ae5f4a222c25bd962.jpg" alt="Personal Care" />
+                    <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29hcHxlbnwwfHwwfHx8MA%3D%3D" alt="Personal Care" />
                     <span>Personal Care</span>
                   </Link>
                   <Link to="/Grooming" className="dropdown-item">
-                    <img src="https://i.pinimg.com/736x/26/92/a8/2692a8eb41ab94ad4ddf71adaa41d7b4.jpg" alt="Grooming" />
+                    <img src="https://media.istockphoto.com/id/941785256/photo/that-super-close-shave-for-super-soft-skin.webp?a=1&b=1&s=612x612&w=0&k=20&c=0Q50bvUhs1AxujJgq2TktixT7EbwbTyS-7y8rIozRew=" alt="Grooming" />
                     <span>Grooming </span>
                   </Link>
                   <Link to="/FragrancesDeodorants" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Fragrances & Deodorants" />
+                    <img src="https://plus.unsplash.com/premium_photo-1762861939862-d95cbc3a71b6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGRlb2RvcmFudCUyMHNwcmF5fGVufDB8fDB8fHww" alt="Fragrances & Deodorants" />
                     <span>Fragrances & Deodorants</span>
                   </Link>
                   <Link to="/BeautyTools" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Beauty Tools & Appliances" />
+                    <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGFpciUyMGRyeWVyfGVufDB8fDB8fHww" alt="Beauty Tools & Appliances" />
                     <span>Beauty Tools & Appliances</span>
                   </Link>
                 </div>
@@ -504,31 +478,31 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/Kitchenware" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Kitchenware" />
+                    <img src="https://plus.unsplash.com/premium_photo-1714702846850-0a9c0f6a40bf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2l0Y2hlbndhcmV8ZW58MHx8MHx8fDA%3D" alt="Kitchenware" />
                     <span>Kitchenware</span>
                   </Link>
                   <Link to="/DiningEssentials" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Dining Essentials" />
+                    <img src="https://plus.unsplash.com/premium_photo-1764411768838-a0d2fc6f66ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGRpbm5lciUyMHNldHN8ZW58MHx8MHx8fDA%3D" alt="Dining Essentials" />
                     <span>Dining Essentials</span>
                   </Link>
                   <Link to="/StorageOrganizers" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Storage & Organizers" />
+                    <img src="https://plus.unsplash.com/premium_photo-1770613493317-0b0f5bf4009f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D" alt="Storage & Organizers" />
                     <span>Storage & Organizers</span>
                   </Link>
                   <Link to="/CleaningUtility" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/f7/38/25/f7382542648a417ae5f4a222c25bd962.jpg" alt="Cleaning & Utility" />
+                    <img src="https://plus.unsplash.com/premium_photo-1765302374801-98c35f5d225f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fGNsZWFuaW5nJTIwdG9vbHN8ZW58MHx8MHx8fDA%3D" alt="Cleaning & Utility" />
                     <span>Cleaning & Utility</span>
                   </Link>
                   <Link to="/BeddingLinen" className="dropdown-item">
-                    <img src="https://i.pinimg.com/736x/26/92/a8/2692a8eb41ab94ad4ddf71adaa41d7b4.jpg" alt="Bedding & Linen" />
+                    <img src="https://plus.unsplash.com/premium_photo-1733306580384-b4eda06cb0db?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGJlZGRpbmd8ZW58MHx8MHx8fDA%3D" alt="Bedding & Linen" />
                     <span>Bedding & Linen</span>
                   </Link>
                   <Link to="/BathroomAccessories" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Bathroom Accessories" />
+                    <img src="https://plus.unsplash.com/premium_photo-1661421956412-2154362dbfdf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bathroom Accessories" />
                     <span>Bathroom Accessories</span>
                   </Link>
                   <Link to="/HomeImprovement" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Home Improvement Items" />
+                    <img src="https://images.unsplash.com/photo-1581166397057-235af2b3c6dd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dG9vbHN8ZW58MHx8MHx8fDA%3D" alt="Home Improvement Items" />
                     <span>Home Improvement Items</span>
                   </Link>
                 </div>
@@ -580,27 +554,27 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/MobileAccessories" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Mobile Accessories" />
+                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D" alt="Mobile Accessories" />
                     <span>Mobile Accessories</span>
                   </Link>
                   <Link to="/AudioDevices" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Audio Devices" />
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHBob25lfGVufDB8fDB8fHww" alt="Audio Devices" />
                     <span>Audio Devices</span>
                   </Link>
                   <Link to="/SmartDevices" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Smart Devices" />
+                    <img src="https://images.unsplash.com/photo-1617043983671-adaadcaa2460?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c21hcnQlMjB3YXRjaHxlbnwwfHwwfHx8MA%3D%3D" alt="Smart Devices" />
                     <span>Smart Devices</span>
                   </Link>
                   <Link to="/ComputerAccessories" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/f7/38/25/f7382542648a417ae5f4a222c25bd962.jpg" alt="Computer Accessories" />
+                    <img src="https://plus.unsplash.com/premium_photo-1683211783920-8c66ab120c09?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8a2V5Ym9hcmQlMjBtb3VzZXxlbnwwfHwwfHx8MA%3D%3D" alt="Computer Accessories" />
                     <span>Computer Accessories</span>
                   </Link>
                   <Link to="/GamingAccessories" className="dropdown-item">
-                    <img src="https://i.pinimg.com/736x/26/92/a8/2692a8eb41ab94ad4ddf71adaa41d7b4.jpg" alt="Gaming Accessories" />
+                    <img src="https://images.unsplash.com/flagged/photo-1580234820596-0876d136e6d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29udHJvbGxlcnxlbnwwfHwwfHx8MA%3D%3D" alt="Gaming Accessories" />
                     <span>Gaming Accessories</span>
                   </Link>
                   <Link to="/ChargersPowerBanks" className="dropdown-item">
-                    <img src="https://i.pinimg.com/originals/25/0e/6f/250e6ffd67f955d81db1f3297533af20.gif" alt="Chargers & Power Banks" />
+                    <img src="https://images.unsplash.com/photo-1731616103600-3fe7ccdc5a59?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNoYXJnZXJ8ZW58MHx8MHx8fDA%3D" alt="Chargers & Power Banks" />
                     <span>Chargers & Power Banks</span>
                   </Link>
                 </div>
@@ -616,23 +590,23 @@ const Homepage = () => {
               <div className="dropdown">
                 <div className="dropdown-content">
                   <Link to="/LargeAppliances" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/06/93/03/069303241620cf54cb3808d160e666ae.jpg" alt="Large Appliances" />
+                    <img src="https://images.unsplash.com/photo-1721613877687-c9099b698faa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJpZGdlfGVufDB8fDB8fHww" alt="Large Appliances" />
                     <span>Large Appliances</span>
                   </Link>
                   <Link to="/SmallAppliances" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/cb/71/41/cb7141083471301d19c4d24f09a7d42c.jpg" alt="Small Appliances" />
+                    <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWl4ZXIlMjBncmluZGVyfGVufDB8fDB8fHww" alt="Small Appliances" />
                     <span>Small Appliances </span>
                   </Link>
                   <Link to="/KitchenAppliances" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/2c/da/89/2cda891e82081f087d659dd226710bf0.jpg" alt="Kitchen Appliances" />
+                    <img src="https://images.unsplash.com/photo-1527195575508-5b138d14a35b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHN0b3ZlfGVufDB8fDB8fHww" alt="Kitchen Appliances" />
                     <span>Kitchen Appliances</span>
                   </Link>
                   <Link to="/HeatingCoolingAppliances" className="dropdown-item">
-                    <img src="https://i.pinimg.com/1200x/f7/38/25/f7382542648a417ae5f4a222c25bd962.jpg" alt="Heating & Cooling Appliances" />
+                    <img src="https://images.unsplash.com/photo-1564510182791-29645da7fac4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFufGVufDB8fDB8fHww" alt="Heating & Cooling Appliances" />
                     <span>Heating & Cooling Appliances</span>
                   </Link>
                   <Link to="/PersonalAppliances" className="dropdown-item">
-                    <img src="https://i.pinimg.com/736x/26/92/a8/2692a8eb41ab94ad4ddf71adaa41d7b4.jpg" alt="Personal Appliances" />
+                    <img src="https://plus.unsplash.com/premium_photo-1678218589968-f9d21a289156?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlyb258ZW58MHx8MHx8fDA%3D" alt="Personal Appliances" />
                     <span>Personal Appliances</span>
                   </Link>
                   
@@ -1057,54 +1031,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="footer-container">
-          <div className="footer-section about">
-            <h2 className="footer-logo">ZPIN</h2>
-            <p>Style at your door, in just 12 hours. Because waiting is so last season.</p>
-          </div>
-
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Categories</a></li>
-              <li><a href="#">Top Picks</a></li>
-              <li><a href="#">About Us</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <h3>Support</h3>
-            <ul>
-              <li><a href="#">Help & FAQs</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Returns & Refunds</a></li>
-              <li><a href="#">Shipping Info</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-section">
-            <div className="fs-logo">
-              <img src="/logo 2.png" alt="logo" />
-              <p>Pune, Maharashtra<br />
-                +91 12345 54321<br />
-                support@support.in</p>
-            </div>
-
-            <div className="social-links">
-              <a href="#"><i className="fab fa-facebook-f"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>&copy; 2025 Zpin. All rights reserved.</p>
-          <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
-      </footer>
+      <Footer/>
     </>
   );
 };
