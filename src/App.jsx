@@ -110,6 +110,9 @@ import KitchenAppliances from "./Pages/Categories/ElectricalAppliances/KitchenAp
 import HeatingCoolingAppliances from "./Pages/Categories/ElectricalAppliances/Heating&CoolingAppliances";
 import PersonalAppliances from "./Pages/Categories/ElectricalAppliances/PersonalAppliances";
 import Profile from "./Pages/Profile/Profile";
+import ProductListingPage from "./Pages/Products/ProductListingPage";
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
+import Wishlist from "./Pages/Wishlist/Wishlist";
 import { getRootCategories } from "./services/categoryApi";
 
 function ScrollToTop() {
@@ -138,132 +141,135 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <ScrollToTop />
+      <BrowserRouter>
+        <ScrollToTop />
 
-    
 
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/Men" element={<Men />} />
-        <Route path="/Women" element={<Women />} />
-        <Route path="/WesternWear" element={<WesternWear />} />
-        <Route path="/WesternWear/Tops" element={<Tops />} />
-        <Route path="/Dresses" element={<Dresses />} />
-        <Route path="/Jumpsuits" element={<Jumpsuits />} />
-        <Route path="/WesternWear/Shirts" element={<WesternShirts />} />
-        <Route path="/WesternWear/Jeans" element={<WesternJeans />} />
-        <Route path="/WesternWear/Tees" element={<Tees />} />
-        <Route path="/WesternWear/L&L" element={<LL />} />
-        <Route path="/CasualWear" element={<CasualWear />} />
-        <Route path="/WorkWear" element={<WorkWear />} />
-        <Route path="/ClothingFabric" element={<ClothingFabric />} />
-        <Route path="/FormalShoes" element={<FormalShoes />} />
-        <Route path="/Essentials" element={<Essentials />} />
-        <Route path="/SportsWear" element={<SportsWear />} />
-        <Route path="/EthnicWear" element={<WomenEthnicWear />} />
-        <Route path="/Women/EthnicWear" element={<WomenEthnicWear />} />
-        <Route path="/Men-EthnicWear" element={<EthnicWear />} />
-        <Route path="/EthnicWear/KurtaSets" element={<KurtaSets />} />
-        <Route path="/EthnicWear/Sarees" element={<Sarees />} />
-        <Route path="/EthnicWear/Lehengas" element={<Lehengas />} />
-        <Route path="/EthnicWear/CoOrdSets" element={<CoOrdSets />} />
-        <Route path="/EthnicWear/Gowns" element={<Gowns />} />
-        <Route path="/EthnicWear/DesignerWear" element={<DesignerWear />} />
-        <Route path="/EthnicWear/IndieWork" element={<IndieWork />} />
-        <Route path="/EthnicWear/IndieFusion" element={<IndieFusion />} />
-        <Route path="/Women/FusionWear" element={<FusionWear />} />
-        <Route path="/Women/FusionWear/BohoFusion" element={<BohoFusion />} />
-        <Route path="/Women/FusionWear/StreetFusion" element={<StreetFusion />} />
-        <Route path="/Women/FusionWear/FestiveFusion" element={<FestiveFusion />} />
-        <Route path="/Women/FusionWear/ContemporaryFusion" element={<ContemporaryFusion />} />
-        <Route path="/Women/FusionWear/LuxuryFusion" element={<LuxuryFusion />} />
-        <Route path="/Women/Essentials" element={<WomenEssentials />} />
-        <Route path="/Women/SportsWear" element={<WomenSportsWear />} />
-        <Route path="/Women/SportsWear/ActiveWear" element={<ActiveWear />} />
-        <Route path="/Women/SportsWear/TrainingGym" element={<TrainingGym />} />
-        <Route path="/Women/SportsWear/RunningWear" element={<RunningWear />} />
-        <Route path="/Women/SportsWear/YogaStudio" element={<YogaStudio />} />
-        <Route path="/Women/SportsWear/OutdoorAthleisure" element={<OutdoorAthleisure />} />
-        <Route path="/Women/FootWear" element={<FootWear />} />
-        <Route path="/kurtas" element={<Kurtas />} />
-        <Route path="/fusion-shirts" element={<FusionShirts />} />
-        <Route path="/sherwani" element={<Sherwani />} />
-        <Route path="/short-kurtas" element={<ShortKurtas />} />
-        <Route path="/blazers" element={<Blazers />} />
-        <Route path="/3-piece-set" element={<ThreePieceSet />} />
-        <Route path="/kurta-set" element={<KurtaSet />} />
-        <Route path="/partywear" element={<ThreePieceSet />} />
-        <Route path="/formal" element={<ThreePieceSet />} />
-        <Route path="/indo-western" element={<ThreePieceSet />} />
-        <Route path="/printed" element={<ThreePieceSet />} />
-        <Route path="/embroidered" element={<ThreePieceSet />} />
-        <Route path="/cotton" element={<ThreePieceSet />} />
-        <Route path="/designer" element={<ThreePieceSet />} />
-        <Route path="/nehru-jackets" element={<NehruJackets />} />
-        <Route path="/dhoti" element={<Dhoti />} />
-        <Route path="/SweatShirts" element={<SweatShirts />} />
-        <Route path="/Tshirts" element={<Tshirts />} />
-        <Route path="/Shirts" element={<Shirts />} />
-        <Route path="/Jackets" element={<Jackets />} />
-        <Route path="/Sweaters" element={<Sweaters />} />
-        <Route path="/Co-Ords" element={<CoOrds />} />
-        <Route path="/Shorts" element={<Shorts />} />
-        <Route path="/Jeans" element={<Jeans />} />
-        <Route path="/Trousers" element={<Trousers />} />
-        <Route path="/Nightsuits" element={<Nightsuits />} />
-        <Route path="/track-pants" element={<TrackPants />} />
-        <Route path="/tracksuits" element={<TrackSuits />} />
-        <Route path="/trunks" element={<Trunks />} />
-        <Route path="/sports-trousers" element={<Trousers />} />
-        <Route path="/innerwear-vests" element={<InnerwearVests />} />
-        <Route path="/swim-bottoms" element={<SwimBottoms />} />
-        <Route path="/tights" element={<Tights />} />
-        <Route path="/briefs" element={<Briefs />} />
-        <Route path="/rain-jacket" element={<RainJackets />} />
-        <Route path="/sports-jacket" element={<SportsJacket />} />
-        <Route path="/thermal-tops" element={<ThermalTops />} />
-        <Route path="/lounge-tshirts" element={<LoungeTshirts />} />
-        <Route path="/loungewear" element={<Loungewear />} />
-        <Route path="/boxers" element={<Boxers />} />
-        <Route path="/ProdLanding" element={<ProdLanding />} />
-        <Route path="/bags" element={<Bags />} />
-        <Route path="/headphones" element={<Headphones />} />
-        <Route path="/accessories" element={<Accessories />} />
-        <Route path="/Handbags" element={<Handbags />} />
-        <Route path="/Wallets-Belts" element={<WalletsBelts />} />
-        <Route path="/Watches" element={<Watches />} />
-        <Route path="/Sunglasses" element={<Sunglasses />} />
-        <Route path="/Jewellery" element={<Jewellery />} />
-        <Route path="/Men/FootWear" element={<MenFootWear />} />
-        <Route path="/Skincare" element={<Skincare />} />
-        <Route path="/Haircare" element={<HairCare />} />
-        <Route path="/Makeup" element={<Makeup />} />
-        <Route path="/PersonalCare" element={<PersonalCare />} />
-        <Route path="/Grooming" element={<Grooming />} />
-        <Route path="/FragrancesDeodorants" element={<FragrancesDeodorants />} />
-        <Route path="/BeautyTools" element={<BeautyTools />} />
-        <Route path="/Kitchenware" element={<Kitchenware />} />
-        <Route path="/DiningEssentials" element={<DiningEssentials />} />
-        <Route path="/StorageOrganizers" element={<StorageOrganizers />} />
-        <Route path="/CleaningUtility" element={<CleaningUtility />} />
-        <Route path="/BeddingLinen" element={<BeddingLinen />} />
-        <Route path="/BathroomAccessories" element={<BathroomAccessories />} />
-        <Route path="/HomeImprovement" element={<HomeImprovement />} />
-        <Route path="/MobileAccessories" element={<MobileAccessories />} />
-        <Route path="/AudioDevices" element={<AudioDevices />} />
-        <Route path="/SmartDevices" element={<SmartDevices />} />
-        <Route path="/ComputerAccessories" element={<ComputerAccessories />} />
-        <Route path="/GamingAccessories" element={<GamingAccessories />} />
-        <Route path="/ChargersPowerBanks" element={<ChargersPowerBanks />} />
-        <Route path="/LargeAppliances" element={<LargeAppliances />} />
-        <Route path="/SmallAppliances" element={<SmallAppliances />} />
-        <Route path="/KitchenAppliances" element={<KitchenAppliances />} />
-        <Route path="/HeatingCoolingAppliances" element={<HeatingCoolingAppliances />} />
-        <Route path="/PersonalAppliances" element={<PersonalAppliances />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </BrowserRouter>
+
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/Men" element={<Men />} />
+          <Route path="/Women" element={<Women />} />
+          <Route path="/WesternWear" element={<WesternWear />} />
+          <Route path="/WesternWear/Tops" element={<Tops />} />
+          <Route path="/Dresses" element={<Dresses />} />
+          <Route path="/Jumpsuits" element={<Jumpsuits />} />
+          <Route path="/WesternWear/Shirts" element={<WesternShirts />} />
+          <Route path="/WesternWear/Jeans" element={<WesternJeans />} />
+          <Route path="/WesternWear/Tees" element={<Tees />} />
+          <Route path="/WesternWear/L&L" element={<LL />} />
+          <Route path="/CasualWear" element={<CasualWear />} />
+          <Route path="/WorkWear" element={<WorkWear />} />
+          <Route path="/ClothingFabric" element={<ClothingFabric />} />
+          <Route path="/FormalShoes" element={<FormalShoes />} />
+          <Route path="/Essentials" element={<Essentials />} />
+          <Route path="/SportsWear" element={<SportsWear />} />
+          <Route path="/EthnicWear" element={<WomenEthnicWear />} />
+          <Route path="/Women/EthnicWear" element={<WomenEthnicWear />} />
+          <Route path="/Men-EthnicWear" element={<EthnicWear />} />
+          <Route path="/EthnicWear/KurtaSets" element={<KurtaSets />} />
+          <Route path="/EthnicWear/Sarees" element={<Sarees />} />
+          <Route path="/EthnicWear/Lehengas" element={<Lehengas />} />
+          <Route path="/EthnicWear/CoOrdSets" element={<CoOrdSets />} />
+          <Route path="/EthnicWear/Gowns" element={<Gowns />} />
+          <Route path="/EthnicWear/DesignerWear" element={<DesignerWear />} />
+          <Route path="/EthnicWear/IndieWork" element={<IndieWork />} />
+          <Route path="/EthnicWear/IndieFusion" element={<IndieFusion />} />
+          <Route path="/Women/FusionWear" element={<FusionWear />} />
+          <Route path="/Women/FusionWear/BohoFusion" element={<BohoFusion />} />
+          <Route path="/Women/FusionWear/StreetFusion" element={<StreetFusion />} />
+          <Route path="/Women/FusionWear/FestiveFusion" element={<FestiveFusion />} />
+          <Route path="/Women/FusionWear/ContemporaryFusion" element={<ContemporaryFusion />} />
+          <Route path="/Women/FusionWear/LuxuryFusion" element={<LuxuryFusion />} />
+          <Route path="/Women/Essentials" element={<WomenEssentials />} />
+          <Route path="/Women/SportsWear" element={<WomenSportsWear />} />
+          <Route path="/Women/SportsWear/ActiveWear" element={<ActiveWear />} />
+          <Route path="/Women/SportsWear/TrainingGym" element={<TrainingGym />} />
+          <Route path="/Women/SportsWear/RunningWear" element={<RunningWear />} />
+          <Route path="/Women/SportsWear/YogaStudio" element={<YogaStudio />} />
+          <Route path="/Women/SportsWear/OutdoorAthleisure" element={<OutdoorAthleisure />} />
+          <Route path="/Women/FootWear" element={<FootWear />} />
+          <Route path="/kurtas" element={<Kurtas />} />
+          <Route path="/fusion-shirts" element={<FusionShirts />} />
+          <Route path="/sherwani" element={<Sherwani />} />
+          <Route path="/short-kurtas" element={<ShortKurtas />} />
+          <Route path="/blazers" element={<Blazers />} />
+          <Route path="/3-piece-set" element={<ThreePieceSet />} />
+          <Route path="/kurta-set" element={<KurtaSet />} />
+          <Route path="/partywear" element={<ThreePieceSet />} />
+          <Route path="/formal" element={<ThreePieceSet />} />
+          <Route path="/indo-western" element={<ThreePieceSet />} />
+          <Route path="/printed" element={<ThreePieceSet />} />
+          <Route path="/embroidered" element={<ThreePieceSet />} />
+          <Route path="/cotton" element={<ThreePieceSet />} />
+          <Route path="/designer" element={<ThreePieceSet />} />
+          <Route path="/nehru-jackets" element={<NehruJackets />} />
+          <Route path="/dhoti" element={<Dhoti />} />
+          <Route path="/SweatShirts" element={<SweatShirts />} />
+          <Route path="/Tshirts" element={<Tshirts />} />
+          <Route path="/Shirts" element={<Shirts />} />
+          <Route path="/Jackets" element={<Jackets />} />
+          <Route path="/Sweaters" element={<Sweaters />} />
+          <Route path="/Co-Ords" element={<CoOrds />} />
+          <Route path="/Shorts" element={<Shorts />} />
+          <Route path="/Jeans" element={<Jeans />} />
+          <Route path="/Trousers" element={<Trousers />} />
+          <Route path="/Nightsuits" element={<Nightsuits />} />
+          <Route path="/track-pants" element={<TrackPants />} />
+          <Route path="/tracksuits" element={<TrackSuits />} />
+          <Route path="/trunks" element={<Trunks />} />
+          <Route path="/sports-trousers" element={<Trousers />} />
+          <Route path="/innerwear-vests" element={<InnerwearVests />} />
+          <Route path="/swim-bottoms" element={<SwimBottoms />} />
+          <Route path="/tights" element={<Tights />} />
+          <Route path="/briefs" element={<Briefs />} />
+          <Route path="/rain-jacket" element={<RainJackets />} />
+          <Route path="/sports-jacket" element={<SportsJacket />} />
+          <Route path="/thermal-tops" element={<ThermalTops />} />
+          <Route path="/lounge-tshirts" element={<LoungeTshirts />} />
+          <Route path="/loungewear" element={<Loungewear />} />
+          <Route path="/boxers" element={<Boxers />} />
+          <Route path="/ProdLanding" element={<ProdLanding />} />
+          <Route path="/bags" element={<Bags />} />
+          <Route path="/headphones" element={<Headphones />} />
+          <Route path="/accessories" element={<Accessories />} />
+          <Route path="/Handbags" element={<Handbags />} />
+          <Route path="/Wallets-Belts" element={<WalletsBelts />} />
+          <Route path="/Watches" element={<Watches />} />
+          <Route path="/Sunglasses" element={<Sunglasses />} />
+          <Route path="/Jewellery" element={<Jewellery />} />
+          <Route path="/Men/FootWear" element={<MenFootWear />} />
+          <Route path="/Skincare" element={<Skincare />} />
+          <Route path="/Haircare" element={<HairCare />} />
+          <Route path="/Makeup" element={<Makeup />} />
+          <Route path="/PersonalCare" element={<PersonalCare />} />
+          <Route path="/Grooming" element={<Grooming />} />
+          <Route path="/FragrancesDeodorants" element={<FragrancesDeodorants />} />
+          <Route path="/BeautyTools" element={<BeautyTools />} />
+          <Route path="/Kitchenware" element={<Kitchenware />} />
+          <Route path="/DiningEssentials" element={<DiningEssentials />} />
+          <Route path="/StorageOrganizers" element={<StorageOrganizers />} />
+          <Route path="/CleaningUtility" element={<CleaningUtility />} />
+          <Route path="/BeddingLinen" element={<BeddingLinen />} />
+          <Route path="/BathroomAccessories" element={<BathroomAccessories />} />
+          <Route path="/HomeImprovement" element={<HomeImprovement />} />
+          <Route path="/MobileAccessories" element={<MobileAccessories />} />
+          <Route path="/AudioDevices" element={<AudioDevices />} />
+          <Route path="/SmartDevices" element={<SmartDevices />} />
+          <Route path="/ComputerAccessories" element={<ComputerAccessories />} />
+          <Route path="/GamingAccessories" element={<GamingAccessories />} />
+          <Route path="/ChargersPowerBanks" element={<ChargersPowerBanks />} />
+          <Route path="/LargeAppliances" element={<LargeAppliances />} />
+          <Route path="/SmallAppliances" element={<SmallAppliances />} />
+          <Route path="/KitchenAppliances" element={<KitchenAppliances />} />
+          <Route path="/HeatingCoolingAppliances" element={<HeatingCoolingAppliances />} />
+          <Route path="/PersonalAppliances" element={<PersonalAppliances />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/products" element={<ProductListingPage />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

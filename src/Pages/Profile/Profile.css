@@ -10,7 +10,7 @@
   overflow-x: hidden;
 }
 
-.profile-page * {
+.profile-page *:not(svg):not(path):not(circle):not(rect):not(line):not(polyline):not(polygon):not(ellipse) {
   all: unset;
   display: revert;
   box-sizing: border-box;
@@ -40,7 +40,7 @@
 /* Header */
 .profile-page header {
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   width: 100%;
 }
 
@@ -169,7 +169,7 @@
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
   overflow: hidden;
   transition: none !important;
@@ -194,7 +194,7 @@
   .profile-page .card-pad {
     padding: 16px;
   }
-  
+
   .profile-page .card-pad-lg {
     padding: 20px;
   }
@@ -378,7 +378,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: none !important;
   transform: none !important;
 }

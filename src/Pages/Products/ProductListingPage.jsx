@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import CategoryCarousel from '../../Components/CategoryCarousel';
@@ -6,32 +7,34 @@ import CategoryHeader from '../../Components/CategoryHeader';
 import ProductsHeader from '../../Components/ProductsHeader';
 import ProductsGrid from '../../Components/ProductsGrid';
 import './ProductListingPage.css';
-
-// ================= DATA =================
-
-
-const products = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb', title: 'Relaxed Fit Tee', price: '₹ 599' },
-  { id: 2, image: 'https://plus.unsplash.com/premium_photo-1673735186578-1a6cd08b8100', title: 'Classic Denim Jeans', price: '₹ 899' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1728718248311-2fdb76913d94', title: 'Comfortable Jogger', price: '₹ 599' },
-  { id: 4, image: 'https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e', title: 'Versatile Hoodie', price: '₹ 799' },
-{ id: 1, image: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb', title: 'Relaxed Fit Tee', price: '₹ 599' },
-  { id: 2, image: 'https://plus.unsplash.com/premium_photo-1673735186578-1a6cd08b8100', title: 'Classic Denim Jeans', price: '₹ 899' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1728718248311-2fdb76913d94', title: 'Comfortable Jogger', price: '₹ 599' },
-  { id: 4, image: 'https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e', title: 'Versatile Hoodie', price: '₹ 799' },
-{ id: 1, image: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb', title: 'Relaxed Fit Tee', price: '₹ 599' },
-  { id: 2, image: 'https://plus.unsplash.com/premium_photo-1673735186578-1a6cd08b8100', title: 'Classic Denim Jeans', price: '₹ 899' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1728718248311-2fdb76913d94', title: 'Comfortable Jogger', price: '₹ 599' },
-  { id: 4, image: 'https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e', title: 'Versatile Hoodie', price: '₹ 799' },
-];
+import { products } from '../../data/productsData';
 
 // ================= PAGE =================
 
 const ProductListingPage = () => {
+  console.log('=== ProductListingPage RENDERED ===');
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get('search') || '';
+
   const [sortLabel, setSortLabel] = useState('Featured');
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedPrice, setSelectedPrice] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+
+  // Sync searchQuery with URL params
+  useEffect(() => {
+    const query = searchParams.get('search') || '';
+    setSearchQuery(query);
+  }, [searchParams]);
+
+  const filteredProducts = products.filter(product => {
+    const query = searchQuery.toLowerCase();
+    return product.title.toLowerCase().includes(query);
+  });
+
+  console.log('Search Query:', searchQuery);
+  console.log('Filtered Products:', filteredProducts.length);
 
   const sizeOptions = [
     { label: 'Small', value: 'small' },
@@ -62,12 +65,12 @@ const ProductListingPage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       <div className="layout-container">
         <main className="site-main">
           <div className="layout-content">
-           
+
           </div>
         </main>
 
@@ -87,7 +90,7 @@ const ProductListingPage = () => {
             sortOptions={sortOptions}
           />
 
-          <ProductsGrid products={products} />
+          <ProductsGrid products={filteredProducts} />
         </section>
 
         <Footer />

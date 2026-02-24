@@ -1,6 +1,6 @@
 .navbar {
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   width: 100%;
@@ -48,16 +48,17 @@
   outline: none;
   border-color: #FFD700;
   background: white;
-  box-shadow: 0 0 0 3px rgba(255,215,0,0.15);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
 }
 
 /* SEARCH BUTTON FIXED */
 .search-btn {
   position: absolute;
-  right: 10px;           /* FIXED: auto positions inside */
+  right: 10px;
+  /* FIXED: auto positions inside */
   top: 50%;
   transform: translateY(-50%);
-  
+
   background: linear-gradient(135deg, #FFD700, #FF8C00);
   border: none;
   border-radius: 0.75rem;
