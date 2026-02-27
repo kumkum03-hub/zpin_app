@@ -164,6 +164,29 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .profile-page .stack-lg {
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .profile-page .stack-lg > .card {
+    width: 100%;
+  }
+
+  /* Ensure profile cards use full width on small screens,
+     overriding any global card sizing */
+  .profile-page .card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Give the second (tabs) card more height so it doesn't look cut off */
+  .profile-page .stack-lg > .card:last-of-type {
+    min-height: 60vh;
+  }
+}
+
 /* Cards */
 .profile-page .card {
   background: white;
@@ -226,8 +249,8 @@
 
 @media (max-width: 768px) {
   .profile-page .avatar-lg {
-    width: 96px;
-    height: 96px;
+    width: 88px;
+    height: 88px;
   }
 }
 
@@ -241,6 +264,7 @@
 @media (max-width: 768px) {
   .profile-page .profile h2 {
     font-size: 22px;
+    margin: 0 0 4px 0;
   }
 }
 
@@ -274,6 +298,25 @@
   .profile-page .tabs {
     padding: 0 12px;
     gap: 4px;
+  }
+
+  /* Make Orders illustration use full width and natural height on mobile */
+  .profile-page #tab-orders .center {
+    padding: 24px 0 16px;
+  }
+
+  .profile-page #tab-orders .center > div:first-child {
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .profile-page #tab-orders img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    margin: 20px 0 68px;
+    border-radius: 12px;
   }
 }
 
