@@ -95,11 +95,12 @@
 /* MOBILE COMPACT NAVBAR (Logo on Far Left) */
 @media (max-width: 768px) {
   .navbar {
-    padding-left: 0 !important;
-    padding-right: 10px !important;
+    padding: 0 10px !important;
+    height: 54px !important;
+    box-sizing: border-box !important;
   }
 
-  .nav-container {
+  .navbar .nav-container {
     padding: 0 !important;
     height: 54px !important;
     gap: 8px !important;
@@ -110,7 +111,7 @@
     margin: 0 !important;
   }
 
-  .nav-logo {
+  .navbar .nav-logo {
     margin: 0 !important;
     padding: 0 !important;
     flex-shrink: 0 !important;
@@ -118,23 +119,24 @@
     align-items: center !important;
   }
 
-  .nav-logo img {
-    height: 34px !important;
+  .navbar .nav-logo img {
+    height: 30px !important;
     width: auto !important;
-    margin-left: 0 !important;
+    margin: 0 !important;
     display: block !important;
   }
 
-  .nav-search {
+  .navbar .nav-search {
     display: flex !important;
-    flex: 1 !important;
+    flex: 1 1 0 !important;
     min-width: 0 !important;
+    max-width: none !important;
     margin: 0 6px !important;
     position: relative !important;
     align-items: center !important;
   }
 
-  .nav-search input {
+  .navbar .nav-search input {
     width: 100% !important;
     height: 32px !important;
     padding: 0 28px 0 8px !important;
@@ -144,7 +146,7 @@
     border: 1px solid #eee !important;
   }
 
-  .search-btn {
+  .navbar .search-btn {
     right: 4px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -156,39 +158,45 @@
     justify-content: center !important;
   }
 
-  .search-btn svg {
+  .navbar .search-btn svg {
     width: 14px !important;
     height: 14px !important;
   }
 
-  .nav-actions {
+  .navbar .nav-actions {
     flex-shrink: 0 !important;
     gap: 4px !important;
     display: flex !important;
     align-items: center !important;
+    margin: 0 !important;
   }
 
-  .nav-btn {
+  .navbar .nav-btn {
     padding: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 0 !important;
   }
 
-  .nav-btn svg {
+  .navbar .nav-btn svg {
     width: 20px !important;
     height: 20px !important;
+    display: block !important;
   }
 }
 
 /* Extra small screens like iPhone SE */
 @media (max-width: 380px) {
-  .nav-logo img {
-    height: 28px !important;
+  .navbar .nav-logo img {
+    height: 24px !important;
   }
 
-  .nav-search input {
+  .navbar .nav-search input {
     font-size: 10px !important;
   }
 
-  .nav-btn svg {
+  .navbar .nav-btn svg {
     width: 16px !important;
     height: 16px !important;
   }

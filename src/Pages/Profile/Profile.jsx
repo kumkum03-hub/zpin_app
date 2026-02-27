@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './Profile.css';
+import Navbar from '../../Components/Navbar';
+import Footer from '../../Components/Footer';
 
 function Profile() {
   const [activeTab, setActiveTab] = useState('orders');
@@ -17,57 +19,23 @@ function Profile() {
   };
 
   return (
-    <div className="profile-page">
-      <header>
-        <div className="container header-row">
-          <a href="#" className="brand">
-            <img src="logo (2).png" alt="Logo" />
-          </a>
-
-          <nav aria-label="Primary">
-            <a href="index.html">Home</a>
-            <a href="#">Categories</a>
-            <a href="cart.html">Cart</a>
-            <a href="#">Wishlist</a>
-            <a href="Profile.html">Profile</a>
-          </nav>
-
-          <div className="actions">
-            <button className="icon-btn" aria-label="Search">
-              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
-              </svg>
-            </button>
-            <button className="icon-btn" aria-label="Wishlist">
-              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z" />
-              </svg>
-            </button>
-            <button className="icon-btn" aria-label="Cart" onClick={goToCart}>
-              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z" />
-              </svg>
-            </button>
-
-            <div className="avatar-sm" style={{ backgroundImage: 'url("https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg")' }}></div>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <div className="container stack-lg">
-          <section className="card card-pad-lg">
-            <div className="profile">
-              <div className="avatar-lg" style={{ backgroundImage: 'url("https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg")' }}></div>
-              <div>
-                <h2>Kumkum Kamthan</h2>
-                <p className="muted">kumkum@email.com</p>
+    <div>
+      <Navbar />
+      <div className="profile-page">
+        <main>
+          <div className="container stack-lg">
+            <section className="card card-pad-lg">
+              <div className="profile">
+                <div className="avatar-lg" style={{ backgroundImage: 'url("https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg")' }}></div>
+                <div>
+                  <h2>Kumkum Kamthan</h2>
+                  <p className="muted">kumkum@email.com</p>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <section className="card">
-            <nav className="tabs" role="tablist">
+            <section className="card">
+              <nav className="tabs" role="tablist">
               <a
                 href="#"
                 className={`tab-link ${activeTab === 'orders' ? 'active' : ''}`}
@@ -267,8 +235,9 @@ function Profile() {
           </section>
         </div>
       </main>
+      </div>
+      <Footer />
     </div>
-    
   );
 }
 
