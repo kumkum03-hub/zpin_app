@@ -11,7 +11,7 @@ function App() {
       alt: 'High-end wireless noise-canceling headphones in black',
       title: 'SonicMax Wireless Over-Ear',
       price: '₹299.00',
-      description: 'Space Black • Premium Audio'
+      description: 'Space Black • Premium'
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ function App() {
       alt: 'Retro style vintage digital camera',
       title: 'Vintage 35mm Digital',
       price: '₹450.00',
-      description: 'Limited Edition • Brown Leather'
+      description: 'Limited Edition•Leather'
     },
     {
       id: 4,

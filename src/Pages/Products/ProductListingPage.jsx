@@ -33,6 +33,8 @@ const ProductListingPage = () => {
     return product.title.toLowerCase().includes(query);
   });
 
+  const hasProducts = filteredProducts.length > 0;
+
   console.log('Search Query:', searchQuery);
   console.log('Filtered Products:', filteredProducts.length);
 
@@ -75,20 +77,22 @@ const ProductListingPage = () => {
         </main>
 
         <section className="container">
-          <ProductsHeader
-            sortLabel={sortLabel}
-            onSortSelect={setSortLabel}
-            selectedSize={selectedSize}
-            setSelectedSize={setSelectedSize}
-            selectedColor={selectedColor}
-            setSelectedColor={setSelectedColor}
-            selectedPrice={selectedPrice}
-            setSelectedPrice={setSelectedPrice}
-            sizeOptions={sizeOptions}
-            colorOptions={colorOptions}
-            priceOptions={priceOptions}
-            sortOptions={sortOptions}
-          />
+          {hasProducts && (
+            <ProductsHeader
+              sortLabel={sortLabel}
+              onSortSelect={setSortLabel}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+              selectedPrice={selectedPrice}
+              setSelectedPrice={setSelectedPrice}
+              sizeOptions={sizeOptions}
+              colorOptions={colorOptions}
+              priceOptions={priceOptions}
+              sortOptions={sortOptions}
+            />
+          )}
 
           <ProductsGrid products={filteredProducts} />
         </section>

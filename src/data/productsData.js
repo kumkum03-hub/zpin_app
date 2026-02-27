@@ -1,6 +1,6 @@
 export const products = [
     // --- Fashion (Men & Women) ---
-    { id: 1, category: 'Fashion', image: 'https://plus.unsplash.com/premium_photo-1673356301514-2cad91907f74?q=80&w=687', title: 'The Classic Crew T-shirt', price: '₹ 899' },
+    { id: 1, category: 'Fashion', image: 'https://plus.unsplash.com/premium_photo-1673356301514-2cad91907f74?q=80&w=687', title: 'The Classic Crew Tshirt', price: '₹ 899' },
     { id: 2, category: 'Fashion', image: 'https://media.istockphoto.com/id/1203543686/photo/handsome-guy-with-hat-is-on-the-beach.jpg?s=2048x2048', title: 'AeroFlow Training Shorts', price: '₹ 899' },
     { id: 3, category: 'Fashion', image: 'https://media.istockphoto.com/id/176405965/photo/facing-the-day-with-a-smile.jpg?s=2048x2048', title: 'The Maverick Slim-Fit Jeans', price: '₹ 899' },
     { id: 4, category: 'Fashion', image: 'https://media.istockphoto.com/id/1614454660/photo/male-model-posing-in-green-kurta.jpg?s=2048x2048', title: 'Emerald Fusion Kurta Set', price: '₹ 899' },
