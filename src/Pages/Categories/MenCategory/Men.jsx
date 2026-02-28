@@ -1,15 +1,26 @@
 import React, { useRef } from "react";
 import "./Men.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../../Components/Navbar";
 import Footer from "../../../Components/Footer";
 
 
 
 
-const Men = () => {
+const TRENDING_PRODUCTS = [
+  { image: "https://plus.unsplash.com/premium_photo-1673356301514-2cad91907f74?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "The Classic Crew T-shirt", price: "Rs.899", oldPrice: "Rs.999", badge: "Trending" },
+  { image: "https://media.istockphoto.com/id/1203543686/photo/handsome-guy-with-hat-is-on-the-beach.jpg?s=2048x2048&w=is&k=20&c=FK4hxmKyWc4GoFVECC1c8j454xyud8sEXvI93mgnTfA=", title: "AeroFlow Training Shorts", price: "Rs.899", oldPrice: "Rs.999", badge: "Trending" },
+  { image: "https://media.istockphoto.com/id/176405965/photo/facing-the-day-with-a-smile.jpg?s=2048x2048&w=is&k=20&c=fdyEn--vvqROp-VyCU4yTrIM7PeETn5JsI_ETDzor1g=", title: "The Maverick Slim-Fit Jeans", price: "Rs.899", oldPrice: "Rs.999", badge: "Trending" },
+  { image: "https://media.istockphoto.com/id/1614454660/photo/male-model-posing-in-green-kurta.jpg?s=2048x2048&w=is&k=20&c=8_ZS_379Dpg8dYNaYkDhcyDKwnksOyNMs9iJvg6e1Os=", title: "Emerald Fusion Kurta Set", price: "Rs.899", oldPrice: "Rs.999", badge: "Trending" },
+  { image: "https://images.unsplash.com/photo-1503341733017-1901578f9f1e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Urban Explorer Tee", price: "Rs.899", oldPrice: "Rs.999", badge: "Highly-Rated" },
+  { image: "https://plus.unsplash.com/premium_photo-1682096794344-88b07b13ef3c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Soft-Touch V-Neck T-shirt", price: "Rs.899", oldPrice: "Rs.999", badge: "Highly-Rated" },
+  { image: "https://plus.unsplash.com/premium_photo-1710107446916-1b0c67a99042?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "CloudStride Running Sneakers", price: "Rs.899", oldPrice: "Rs.999", badge: "Highly-Rated" },
+  { image: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "A durable, classic leather wallet", price: "Rs.899", oldPrice: "Rs.999", badge: "Highly-Rated" },
+];
 
+const Men = () => {
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
 
   const goToCart = () => {
     window.location.href = "cart.html";
@@ -103,63 +114,22 @@ const Men = () => {
             <h1 className="tagline">Trending Now</h1>
 
             <div className="mainContainer">
-
-              <div className="card">
-                <div className="trending-badge">Trending</div>
-                <img src="https://plus.unsplash.com/premium_photo-1673356301514-2cad91907f74?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h1>The Classic Crew <br />T-shirt</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Trending</div>
-                <img src="https://media.istockphoto.com/id/1203543686/photo/handsome-guy-with-hat-is-on-the-beach.jpg?s=2048x2048&w=is&k=20&c=FK4hxmKyWc4GoFVECC1c8j454xyud8sEXvI93mgnTfA=" />
-                <h1>AeroFlow Training<br /> Shorts</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Trending</div>
-                <img src="https://media.istockphoto.com/id/176405965/photo/facing-the-day-with-a-smile.jpg?s=2048x2048&w=is&k=20&c=fdyEn--vvqROp-VyCU4yTrIM7PeETn5JsI_ETDzor1g=" />
-                <h1>The Maverick <br />Slim-Fit Jeans</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Trending</div>
-                <img src="https://media.istockphoto.com/id/1614454660/photo/male-model-posing-in-green-kurta.jpg?s=2048x2048&w=is&k=20&c=8_ZS_379Dpg8dYNaYkDhcyDKwnksOyNMs9iJvg6e1Os=" />
-                <h1>Emerald Fusion <br />Kurta Set</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Highly-Rated</div>
-                <img src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h1>Urban Explorer <br /> Tee</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Highly-Rated</div>
-                <img src="https://plus.unsplash.com/premium_photo-1682096794344-88b07b13ef3c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h1>Soft-Touch V-Neck <br />T-shirt</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Highly-Rated</div>
-                <img src="https://plus.unsplash.com/premium_photo-1710107446916-1b0c67a99042?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h1>CloudStride <br />Running Sneakers</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
-              <div className="card">
-                <div className="trending-badge">Highly-Rated</div>
-                <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <h1>A durable, classic <br />leather wallet</h1>
-                <p>Rs.899 <span id="strikethrough">Rs.999</span></p>
-              </div>
-
+              {TRENDING_PRODUCTS.map((product) => (
+                <div
+                  key={product.title}
+                  className="card"
+                  onClick={() => navigate('/ProdLanding', { state: { product } })}
+                  style={{ cursor: 'pointer' }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate('/ProdLanding', { state: { product } })}
+                >
+                  <div className="trending-badge">{product.badge}</div>
+                  <img src={product.image} alt={product.title} />
+                  <h1>{product.title}</h1>
+                  <p>{product.price} <span id="strikethrough">{product.oldPrice}</span></p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

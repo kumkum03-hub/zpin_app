@@ -3,6 +3,7 @@ import Footer from '../../../../Components/Footer';
 import FilterDropdown from '../../../../Components/FilterDropdown';
 import './Tops.css';
 import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { id: 1, image: 'https://images.unsplash.com/photo-1588117305388-c2631a279f82?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdvbWVuJTIwdHNoaXJ0fGVufDB8fDB8fHww', label: 'T-shirt' },
@@ -41,15 +42,16 @@ const products = [
   { id: 12, image: 'https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', title: 'Versatile Hoodie', price: '₹ 799' },
 ];
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button 
@@ -66,6 +68,7 @@ const ProductCard = ({ image, title, price }) => {
 };
 
 const Tops = () => {
+  const navigate = useNavigate();
   const [sortLabel, setSortLabel] = useState('Featured');
   const [openDropdown, setOpenDropdown] = useState(null);
   const controlsRef = useRef(null);
@@ -266,6 +269,7 @@ const Tops = () => {
                   image={product.image}
                   title={product.title}
                   price={product.price}
+                  onClick={() => navigate('/ProdLanding', { state: { product } })}
                 />
               ))}
             </div>

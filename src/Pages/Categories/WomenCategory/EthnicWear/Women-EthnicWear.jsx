@@ -4,20 +4,21 @@ import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../../../../Components/Navbar.jsx";
 import Footer from "../../../../Components/Footer.jsx";
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -33,6 +34,15 @@ function EthnicWear() {
   const leftBtnRef = useRef(null);
   const rightBtnRef = useRef(null);
   const navigate = useNavigate();
+
+  const bestSellers = [
+    { image: "https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwZHJlc3N8ZW58MHx8MHx8fDA%3D", title: "Elegant Maxi Dress", price: "₹ 1,299", oldPrice: "₹ 1,599" },
+    { image: "https://plus.unsplash.com/premium_photo-1690038783854-ff651bc9d1d7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHdvbWVuJTIwdGVlfGVufDB8fDB8fHww", title: "Classic White Blouse", price: "₹ 799", oldPrice: "₹ 999" },
+    { image: "https://plus.unsplash.com/premium_photo-1673367751771-f13597abadf3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdvbWVuJTIwc2tpcnR8ZW58MHx8MHx8fDA%3D", title: "Flowy Midi Skirt", price: "₹ 899", oldPrice: "₹ 1,199" },
+    { image: "https://images.unsplash.com/photo-1596596866830-f01857e2ac4f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tZW4lMjBjcm9wJTIwdG9wfGVufDB8fDB8fHww", title: "Stylish Crop Top", price: "₹ 599", oldPrice: "₹ 799" },
+    { image: "https://images.unsplash.com/photo-1742980511651-b845fa826f33?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdvbWVuJTIwc2xpbSUyMGZpdCUyMGplYW5zfGVufDB8fDB8fHww", title: "Slim Fit Jeans", price: "₹ 1,099", oldPrice: "₹ 1,499" },
+    { image: "https://plus.unsplash.com/premium_photo-1682095667341-349d44c12bad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHdvbWVuJTIwamFja2V0fGVufDB8fDB8fHww", title: "Chic Leather Jacket", price: "₹ 2,499", oldPrice: "₹ 3,299" },
+  ];
 
   // Scroll logic
   useEffect(() => {
@@ -193,36 +203,15 @@ function EthnicWear() {
             <div className="header-label"></div>
           </div>
           <div className="grid best-sellers">
-            <ProductCard
-              image="https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwZHJlc3N8ZW58MHx8MHx8fDA%3D"
-              title="Elegant Maxi Dress"
-              price="₹ 1,299"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1690038783854-ff651bc9d1d7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHdvbWVuJTIwdGVlfGVufDB8fDB8fHww"
-              title="Classic White Blouse"
-              price="₹ 799"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1673367751771-f13597abadf3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdvbWVuJTIwc2tpcnR8ZW58MHx8MHx8fDA%3D"
-              title="Flowy Midi Skirt"
-              price="₹ 899"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1596596866830-f01857e2ac4f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tZW4lMjBjcm9wJTIwdG9wfGVufDB8fDB8fHww"
-              title="Stylish Crop Top"
-              price="₹ 599"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1742980511651-b845fa826f33?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdvbWVuJTIwc2xpbSUyMGZpdCUyMGplYW5zfGVufDB8fDB8fHww"
-              title="Slim Fit Jeans"
-              price="₹ 1,099"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1682095667341-349d44c12bad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHdvbWVuJTIwamFja2V0fGVufDB8fDB8fHww"
-              title="Chic Leather Jacket"
-              price="₹ 2,499"
-            />
+            {bestSellers.map((product, index) => (
+              <ProductCard
+                key={index}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+                onClick={() => navigate('/ProdLanding', { state: { product } })}
+              />
+            ))}
           </div>
           <div className="occasions">
             <h2>Shop by Occasion</h2>

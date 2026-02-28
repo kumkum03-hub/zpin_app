@@ -29,20 +29,21 @@ const products = [
   { id: 12, image: 'https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e?q=80&w=387&auto=format&fit=crop', title: 'Luxury Blazer', price: '₹ 3999' },
 ];
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button 
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -281,6 +282,7 @@ const ThreePieceSet = () => {
                   image={product.image}
                   title={product.title}
                   price={product.price}
+                  onClick={() => navigate('/ProdLanding', { state: { product } })}
                 />
               ))}
             </div>

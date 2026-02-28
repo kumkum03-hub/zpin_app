@@ -3,6 +3,7 @@ import Footer from '../../../../Components/Footer';
 import FilterDropdown from '../../../../Components/FilterDropdown';
 import './Shirts.css';
 import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { id: 1, image: 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/f25594fe-5574-4c62-b84e-11791c91be86.png', label: 'Check' },
@@ -62,20 +63,21 @@ const sortOptions = [
   { label: 'Price: High to Low', value: 'Price: High to Low' },
 ];
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button 
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -87,6 +89,7 @@ const ProductCard = ({ image, title, price }) => {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
   const [sortLabel, setSortLabel] = useState('Featured');
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -243,6 +246,7 @@ const Index = () => {
                   image={product.image}
                   title={product.title}
                   price={product.price}
+                  onClick={() => navigate('/ProdLanding', { state: { product } })}
                 />
               ))}
             </div>

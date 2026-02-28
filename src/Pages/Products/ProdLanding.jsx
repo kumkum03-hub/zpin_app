@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './ProdLanding.css';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 
+const DEFAULT_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcvGxOUEHqF18oTaOsA4PAQwuFI7i2AycHMxyaracpEOP4AFc1bvbKcF6whr3u6yNytlcxHaJuHyiOFfHf-fiMtIy3BGu_VbEiTZ88g1_pnSXLPB8tT5UKcDPHcjbppr419RZmG_5EyfsSYqvUuxeAlTodfnFAiMh0HV-Rbp538Hy-zj_uUi69e1DtuznQhe1T7CbpeKUq6Zwg_uTSlxB2PmBaBjmqp3K9NNWDgKj49N7aNuK88nVYxaovSWnpPMbtDi9r5WFzlAY';
+const DEFAULT_THUMBNAILS = [
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuCcqNrgVWXwwI-OFwk8H7nV2SGCSrbo4i6XMu_oixZNHYibp30sAfilt1seUVzBl8AaMs0xaqYIh4c7cIS6uE36GQuWqMWxMEoLV7_Ku3dajUTUYPzujSNPt51wEqtUII_imRJf4ZUD78gEWsG30F4AvcAW-Xr6ZB0BhERu_kJw4fU3PBYOvgJZ0flHf9qVb6LYwSIP27r9hReS5VY5IcHjSc0bfCs5EnKMwXeNixqCCaOn27ec2FOeOEy0u7xqQtY6BKbaE9cMdds',
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuDYWLtLLv69aSF1vlMorUu4Z-JXTqXdAzNk_6UsEG5rXhJEJSUde3h0H-htN6w6vKp6FOMb7JkT5ZBDdWcqAUFcNmydgRAdHwEyBB1upfuZD_11dtfAKzFC2fyLrah-hdEDzkDBwh7Ri70RbgtMO4f_Zt8DWPjbABEcUv0-u1JTxRXqgwGuQmJZDHxz6-DjwJQbWd9OaYCFaAX5U7IIltBuB9XcbszpaEuCBvQG9m3x6itpBLWHig5-YBYlqBIWl_jjnSMrQ4fFCsc',
+    DEFAULT_IMAGE,
+];
 
-const Index = () => {
-    const [mainImage, setMainImage] = useState('https://lh3.googleusercontent.com/aida-public/AB6AXuBcvGxOUEHqF18oTaOsA4PAQwuFI7i2AycHMxyaracpEOP4AFc1bvbKcF6whr3u6yNytlcxHaJuHyiOFfHf-fiMtIy3BGu_VbEiTZ88g1_pnSXLPB8tT5UKcDPHcjbppr419RZmG_5EyfsSYqvUuxeAlTodfnFAiMh0HV-Rbp538Hy-zj_uUi69e1DtuznQhe1T7CbpeKUq6Zwg_uTSlxB2PmBaBjmqp3K9NNWDgKj49N7aNuK88nVYxaovSWnpPMbtDi9r5WFzlAY');
+const ProdLanding = () => {
+    const location = useLocation();
+    const product = location.state?.product || null;
+
+    const thumbnails = product?.images?.length
+        ? product.images
+        : product?.image
+        ? [product.image]
+        : DEFAULT_THUMBNAILS;
+    const defaultMainImage = product?.images?.[0] || product?.image || DEFAULT_IMAGE;
+
+    const [mainImage, setMainImage] = useState(defaultMainImage);
     const [selectedSize, setSelectedSize] = useState('');
+
+    useEffect(() => {
+        setMainImage(defaultMainImage);
+    }, [defaultMainImage]);
 
     const handleThumbnailClick = (src) => {
         setMainImage(src);
@@ -20,47 +41,45 @@ const Index = () => {
         window.location.href = "Profile.html";
     };
 
-    const thumbnails = [
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuCcqNrgVWXwwI-OFwk8H7nV2SGCSrbo4i6XMu_oixZNHYibp30sAfilt1seUVzBl8AaMs0xaqYIh4c7cIS6uE36GQuWqMWxMEoLV7_Ku3dajUTUYPzujSNPt51wEqtUII_imRJf4ZUD78gEWsG30F4AvcAW-Xr6ZB0BhERu_kJw4fU3PBYOvgJZ0flHf9qVb6LYwSIP27r9hReS5VY5IcHjSc0bfCs5EnKMwXeNixqCCaOn27ec2FOeOEy0u7xqQtY6BKbaE9cMdds',
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuDYWLtLLv69aSF1vlMorUu4Z-JXTqXdAzNk_6UsEG5rXhJEJSUde3h0H-htN6w6vKp6FOMb7JkT5ZBDdWcqAUFcNmydgRAdHwEyBB1upfuZD_11dtfAKzFC2fyLrah-hdEDzkDBwh7Ri70RbgtMO4f_Zt8DWPjbABEcUv0-u1JTxRXqgwGuQmJZDHxz6-DjwJQbWd9OaYCFaAX5U7IIltBuB9XcbszpaEuCBvQG9m3x6itpBLWHig5-YBYlqBIWl_jjnSMrQ4fFCsc',
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuBcvGxOUEHqF18oTaOsA4PAQwuFI7i2AycHMxyaracpEOP4AFc1bvbKcF6whr3u6yNytlcxHaJuHyiOFfHf-fiMtIy3BGu_VbEiTZ88g1_pnSXLPB8tT5UKcDPHcjbppr419RZmG_5EyfsSYqvUuxeAlTodfnFAiMh0HV-Rbp538Hy-zj_uUi69e1DtuznQhe1T7CbpeKUq6Zwg_uTSlxB2PmBaBjmqp3K9NNWDgKj49N7aNuK88nVYxaovSWnpPMbtDi9r5WFzlAY',
-    ];
+    const displayTitle = product?.title || 'Shop Name';
+    const displaySubtitle = product?.subtitle || 'Silk-Like Romantic Casual Resort Cream';
+    const displayPrice = product?.price || '799/-';
+    const displayOldPrice = product?.oldPrice || '999/-';
 
     return (
-        <React.Fragment>
+        <div className="prodlanding">
             <Navbar />
-            <div className={styles.prodLandingPage}>
-
-            <div className={styles.page}>
-                <div className={styles.row}>
-                    <div className={styles.half}>
+            <div className="page">
+                <div className="row">
+                    <div className="half">
                         <img
                             id="main-image"
-                            className={styles.mainImg}
+                            className="main-img"
                             src={mainImage}
-                            alt="Main product"
+                            alt={displayTitle}
                         />
 
-                        <div className={styles.thumbs} id="thumbs">
+                        <div className="thumbs" id="thumbs">
                             {thumbnails.map((thumb, index) => (
                                 <img
                                     key={index}
-                                    className={`${styles.thumb} ${mainImage === thumb ? styles.selected : ''}`}
+                                    className={`thumb ${mainImage === thumb ? 'selected' : ''}`}
                                     src={thumb}
                                     alt={`Thumbnail ${index + 1}`}
                                     onClick={() => handleThumbnailClick(thumb)}
                                     tabIndex={0}
+                                    role="button"
                                 />
                             ))}
                         </div>
                     </div>
 
-                    <div className={styles.half}>
-                        <h1 className="shop-name">Shop Name</h1>
-                        <p className="subtitle">Silk-Like Romantic Casual Resort Cream</p>
+                    <div className="half">
+                        <h1 className="shop-name">{displayTitle}</h1>
+                        <p className="subtitle">{displaySubtitle}</p>
 
                         <p className="price-row">
-                            799/- <span className="price-old">999/-</span>
+                            {displayPrice} <span className="price-old">{displayOldPrice}</span>
                         </p>
 
                         <div className="sizes">
@@ -244,10 +263,9 @@ const Index = () => {
                 </div>
 
             </div>
-            </div>
             <Footer />
-        </React.Fragment>
+        </div>
     );
 };
 
-export default Index;
+export default ProdLanding;

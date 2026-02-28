@@ -246,6 +246,7 @@ main.site-main {
   font-size: 18px;
   opacity: 0;
   transition: opacity .28s ease;
+  border-radius: 50%;
 }
 
 .card-link:hover .card-overlay {
@@ -385,17 +386,18 @@ main.site-main {
 /* Responsive Trending Cards */
 @media (max-width: 768px) {
   .mainContainer {
-    padding: 0 10px !important;
+    padding: 0 3px !important;
+    justify-content: space-between !important;
   }
 
   .card {
-    height: 200px !important;
-    width: 130px !important;
-    margin: 8px !important;
+    height: 240px !important;
+    width: calc(50% - 6px) !important;
+    margin: 8px 3px !important;
   }
 
   .card img {
-    height: 130px !important;
+    height: 150px !important;
   }
 
   .card h1 {
@@ -404,7 +406,7 @@ main.site-main {
   }
 
   .card p {
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
   }
 
   .trending-badge {
@@ -415,53 +417,53 @@ main.site-main {
 
 @media (max-width: 480px) {
   .card {
-    height: 180px !important;
-    width: 110px !important;
-    margin: 6px !important;
+    height: 240px !important;
+    width: calc(50% - 6px) !important;
+    margin: 8px 3px !important;
   }
 
   .card img {
-    height: 110px !important;
+    height: 150px !important;
   }
 
   .card h1 {
-    font-size: 10px !important;
-    padding: 4px !important;
+    font-size: 12px !important;
+    padding: 5px !important;
   }
 
   .card p {
-    font-size: 0.7rem !important;
+    font-size: 0.85rem !important;
   }
 
   .trending-badge {
-    font-size: 7px !important;
-    padding: 2px 4px !important;
+    font-size: 8px !important;
+    padding: 3px 5px !important;
   }
 }
 
 @media (max-width: 360px) {
   .card {
-    height: 160px !important;
-    width: 95px !important;
-    margin: 4px !important;
+    height: 240px !important;
+    width: calc(50% - 6px) !important;
+    margin: 8px 3px !important;
   }
 
   .card img {
-    height: 95px !important;
+    height: 150px !important;
   }
 
   .card h1 {
-    font-size: 9px !important;
-    padding: 3px !important;
+    font-size: 12px !important;
+    padding: 5px !important;
   }
 
   .card p {
-    font-size: 0.65rem !important;
+    font-size: 0.85rem !important;
   }
 
   .trending-badge {
-    font-size: 6px !important;
-    padding: 2px 3px !important;
+    font-size: 8px !important;
+    padding: 3px 5px !important;
   }
 }
 
@@ -523,82 +525,27 @@ main.site-main {
 
 @media (max-width: 720px) {
   .category-row .card-link {
-    flex: 0 0 200px;
-    max-width: 200px;
+    flex: 0 0 110px !important;
+    max-width: 110px !important;
+    height: auto !important;
+  }
+
+  .category-row .card-media {
+    width: 110px !important;
+    height: 110px !important;
+    border-radius: 50% !important;
+  }
+
+  .category-row .card-overlay {
+    border-radius: 50% !important;
   }
 
   .arrow-btn {
     width: 36px;
     height: 36px;
   }
-}
 
-/* Horizontal category scroller */
-.category-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 18px 0 28px 0;
-  position: relative;
-  /* anchor absolute-positioned arrow buttons */
-}
-
-.category-scroll {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 8px 6px;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.category-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-
-.arrow-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-  transition: transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arrow-btn:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-.arrow-btn.left {
-  left: 12px;
-}
-
-.arrow-btn.right {
-  right: 12px;
-}
-
-@media (max-width: 720px) {
-  .category-row .card-link {
-    flex: 0 0 200px;
-    max-width: 200px;
-  }
-
-  .arrow-btn {
-    width: 36px;
-    height: 36px;
+  .card-label {
+    font-size: 14px;
   }
 }

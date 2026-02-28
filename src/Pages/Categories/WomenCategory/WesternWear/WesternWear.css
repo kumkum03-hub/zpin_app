@@ -298,7 +298,7 @@
 }
 
 .card{
-  height: 330px;
+  height: 360px;
   width: 250px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 30px;
@@ -328,6 +328,7 @@ height: 200px;
   text-align: center;
   margin: 0;
   padding: 10px;
+  color: #000;
 }
 
 .trending-badge {
@@ -351,7 +352,7 @@ height: 200px;
  
 }
 .card p{
-  color: red;
+  color: #000;
    font-size: 1rem;
 }
 .card:hover{

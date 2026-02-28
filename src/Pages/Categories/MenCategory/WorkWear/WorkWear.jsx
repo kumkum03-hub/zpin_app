@@ -4,20 +4,21 @@ import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../../../../Components/Navbar.jsx";
 import Footer from "../../../../Components/Footer.jsx";
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button 
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -33,6 +34,15 @@ function WorkWear() {
   const leftBtnRef = useRef(null);
   const rightBtnRef = useRef(null);
   const navigate = useNavigate();
+
+  const bestSellers = [
+    { image: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Professional Blazer", price: "₹ 2999", oldPrice: "₹ 3999" },
+    { image: "https://plus.unsplash.com/premium_photo-1673735186578-1a6cd08b8100?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Formal Trousers", price: "₹ 1899", oldPrice: "₹ 2499" },
+    { image: "https://images.unsplash.com/photo-1728718248311-2fdb76913d94?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Business Shirt", price: "₹ 1299", oldPrice: "₹ 1599" },
+    { image: "https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Executive Jacket", price: "₹ 2499", oldPrice: "₹ 2999" },
+    { image: "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Formal Shoes", price: "₹ 3499", oldPrice: "₹ 4299" },
+    { image: "https://images.unsplash.com/photo-1688573156881-c6ae02ef0a32?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Office Kurta", price: "₹ 1799", oldPrice: "₹ 2299" },
+  ];
 
   // Scroll logic
   useEffect(() => {
@@ -215,36 +225,15 @@ function WorkWear() {
             <div className="header-label"></div>
           </div>
           <div className="grid best-sellers">
-            <ProductCard
-              image="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Professional Blazer"
-              price="₹ 2999"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1673735186578-1a6cd08b8100?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Formal Trousers"
-              price="₹ 1899"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1728718248311-2fdb76913d94?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Business Shirt"
-              price="₹ 1299"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1673827311290-d435f481152e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Executive Jacket"
-              price="₹ 2499"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Formal Shoes"
-              price="₹ 3499"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1688573156881-c6ae02ef0a32?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Office Kurta"
-              price="₹ 1799"
-            />
+            {bestSellers.map((product) => (
+              <ProductCard
+                key={product.title}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+                onClick={() => navigate('/ProdLanding', { state: { product } })}
+              />
+            ))}
           </div>
           <div className="occasions">
             <h2>Shop by Occasion</h2>

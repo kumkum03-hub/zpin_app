@@ -4,20 +4,21 @@ import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../../../../Components/Navbar.jsx";
 import Footer from "../../../../Components/Footer.jsx";
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -33,6 +34,15 @@ function FusionWear() {
   const leftBtnRef = useRef(null);
   const rightBtnRef = useRef(null);
   const navigate = useNavigate();
+
+  const bestSellers = [
+    { image: "https://plus.unsplash.com/premium_photo-1687188210526-50610de047d8?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Indie Fusion Kurta Set", price: "₹ 1,299", oldPrice: "₹ 1,599" },
+    { image: "https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwZHJlc3N8ZW58MHx8MHx8fDA%3D", title: "Boho Fusion Dress", price: "₹ 1,499", oldPrice: "₹ 1,799" },
+    { image: "https://images.unsplash.com/photo-1765615913131-24a7d44d779d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", title: "Indie Work Fusion Top", price: "₹ 899", oldPrice: "₹ 1,099" },
+    { image: "https://images.unsplash.com/photo-1766471524299-016b52512780?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzN8fHdvbWVuJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D", title: "Street Fusion Jacket", price: "₹ 1,799", oldPrice: "₹ 2,199" },
+    { image: "https://plus.unsplash.com/premium_photo-1689371953070-10782471db47?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d29tZW4lMjBqZWFuc3xlbnwwfHwwfHx8MA%3D%3D", title: "Festive Fusion Lehenga", price: "₹ 2,999", oldPrice: "₹ 3,499" },
+    { image: "https://images.unsplash.com/photo-1598554793905-075f7b355cd9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW4lMjB0ZWV8ZW58MHx8MHx8fDA%3D", title: "Contemporary Fusion Skirt", price: "₹ 1,199", oldPrice: "₹ 1,499" },
+  ];
 
   // Scroll logic
   useEffect(() => {
@@ -183,36 +193,15 @@ function FusionWear() {
             <div className="header-label"></div>
           </div>
           <div className="grid best-sellers">
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1687188210526-50610de047d8?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Indie Fusion Kurta Set"
-              price="₹ 1,299"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1550928431-ee0ec6db30d3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwZHJlc3N8ZW58MHx8MHx8fDA%3D"
-              title="Boho Fusion Dress"
-              price="₹ 1,499"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1765615913131-24a7d44d779d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              title="Indie Work Fusion Top"
-              price="₹ 899"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1766471524299-016b52512780?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzN8fHdvbWVuJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D"
-              title="Street Fusion Jacket"
-              price="₹ 1,799"
-            />
-            <ProductCard
-              image="https://plus.unsplash.com/premium_photo-1689371953070-10782471db47?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d29tZW4lMjBqZWFuc3xlbnwwfHwwfHx8MA%3D%3D"
-              title="Festive Fusion Lehenga"
-              price="₹ 2,999"
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1598554793905-075f7b355cd9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW4lMjB0ZWV8ZW58MHx8MHx8fDA%3D"
-              title="Contemporary Fusion Skirt"
-              price="₹ 1,199"
-            />
+            {bestSellers.map((product) => (
+              <ProductCard
+                key={product.title}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+                onClick={() => navigate('/ProdLanding', { state: { product } })}
+              />
+            ))}
           </div>
           <div className="occasions">
             <h2>Shop by Occasion</h2>

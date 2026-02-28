@@ -2,7 +2,7 @@ import Navbar from '../../../../Components/Navbar';
 import Footer from '../../../../Components/Footer';
 import './Trunks.css';
 import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const categories = [
   { id: 1, image: 'https://images.unsplash.com/photo-1635892465062-de290f48da4d?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label: 'Outer Elastic' },
@@ -30,20 +30,21 @@ const products = [
   { id: 10, image: 'https://images.unsplash.com/photo-1752047763304-df3b84798b37?q=80&w=465&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', title: 'Elastane Trunks', price: '₹ 549' },
 ];
 
-const ProductCard = ({ image, title, price }) => {
+const ProductCard = ({ image, title, price, onClick }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e?.stopPropagation?.();
     setIsFavorite(!isFavorite);
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={onClick} style={onClick ? { cursor: 'pointer' } : undefined}>
       <div className="product-image">
         <div style={{ backgroundImage: `url('${image}')` }}></div>
         <button 
           className={`favorite-btn ${isFavorite ? 'clicked' : ''}`}
-          onClick={toggleFavorite}
+          onClick={(e) => toggleFavorite(e)}
         >
           {isFavorite ? 'favorite' : 'favorite_border'}
         </button>
@@ -55,6 +56,7 @@ const ProductCard = ({ image, title, price }) => {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
   const [sortLabel, setSortLabel] = useState('Featured');
   const [openDropdown, setOpenDropdown] = useState(null);
   const controlsRef = useRef(null);
@@ -268,6 +270,7 @@ const Index = () => {
                   image={product.image}
                   title={product.title}
                   price={product.price}
+                  onClick={() => navigate('/ProdLanding', { state: { product } })}
                 />
               ))}
             </div>
